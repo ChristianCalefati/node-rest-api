@@ -6,12 +6,16 @@
     "build": "tsc",
     "start-server": "node ./dist/server.js",
     "clean": "rimraf ./dist",
-    "poststart-server" : "npm run clean"
+    "poststart-server": "npm run clean"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "rimraf": "^6.0.1",
     "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
   }
 }
