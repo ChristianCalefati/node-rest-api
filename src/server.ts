@@ -1,6 +1,7 @@
 
 import * as express from "express";
 import { root } from "./routes/root";
+import { isNumber } from "./utils";
 
 const app = express();
 
@@ -10,9 +11,20 @@ function setupExpress() {
 }
 
 function startServer() {
-    app.listen(9000, () => {
+    const portArg = process.argv[2];
+    let port: number;
 
-        console.log('Express is running on port localhost:9000')
+    if (isNumber(portArg)) {
+        port = parseInt(portArg);
+    }
+
+    if (!port) {
+        port = 9000;
+    }
+
+    app.listen(port, () => {
+
+        console.log(`Express is running on port localhost:${port}`)
     })
 }
 

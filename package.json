@@ -6,7 +6,7 @@
     "clean": "rimraf dist",
     "build": "tsc",
     "start-server": "node ./dist/server.js",
-    "start-server-dev": "tsc-watch --onSuccess \"node dist/server.js\"",
+    "start-server-dev": "tsc-watch --onSuccess \"node dist/server.js 9001\"",
     "dev": "npm-run-all clean build start-server-dev"
   },
   "author": "",
