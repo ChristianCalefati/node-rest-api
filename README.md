@@ -29,6 +29,11 @@ Please note that this documentation is not yet complete. More details and featur
 - **TypeORM**: ![TypeORM](https://img.shields.io/badge/-TypeORM-F76C00?style=flat-square&logo=typeorm&logoColor=white)
 
 
+- **rimraf**
+
+- **npm-run-all**
+
+
 
 ## Install
 
