@@ -7,7 +7,8 @@
     "build": "tsc",
     "start-server": "node ./dist/server.js",
     "start-server-dev": "tsc-watch --onSuccess \"node dist/server.js 9001\"",
-    "dev": "npm-run-all clean build start-server-dev"
+    "dev": "npm-run-all clean build start-server-dev",
+    "test": "npm-run-all clean build start-server"
   },
   "author": "",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "typescript": "^5.6.2"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.0"
   }
 }

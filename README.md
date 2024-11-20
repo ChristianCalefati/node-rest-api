@@ -29,9 +29,11 @@ Please note that this documentation is not yet complete. More details and featur
 - **TypeORM**: ![TypeORM](https://img.shields.io/badge/-TypeORM-F76C00?style=flat-square&logo=typeorm&logoColor=white)
 
 
-- **rimraf**
+- **rimraf**: ![rimraf](https://img.shields.io/badge/-rimraf-C12127?style=flat-square)
 
-- **npm-run-all**
+- **npm-run-all**: ![npm-run-all](https://img.shields.io/badge/-npm--run--all-CB3837?style=flat-square&logo=npm&logoColor=white)
+
+- **dotenv**: ![dotenv](https://img.shields.io/badge/-dotenv-ECD53F?style=flat-square&logo=dotenv&logoColor=black)
 
 
 
