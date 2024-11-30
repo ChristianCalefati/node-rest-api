@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Demo project for a simple prod ready node REST API",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist logs",
     "build": "tsc",
     "start-server": "node ./dist/server.js",
     "start-server-dev": "tsc-watch --onSuccess \"node dist/server.js 9001\"",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "winston": "^3.17.0"
   }
 }
