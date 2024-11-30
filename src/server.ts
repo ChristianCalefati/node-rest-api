@@ -21,10 +21,16 @@ function setupExpress() {
 }
 
 function startServer() {
+    const portEnv = process.env.PORT;
     const portArg = process.argv[2];
+
     let port: number;
 
-    if (isNumber(portArg)) {
+    if (isNumber(portEnv)) {
+        port = parseInt(portEnv);
+    }
+
+    if (!port && isNumber(portArg)) {
         port = parseInt(portArg);
     }
 
