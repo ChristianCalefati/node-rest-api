@@ -3,6 +3,7 @@
         "target": "ES5",
         "outDir": "dist",
         "rootDir": "src",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     }
 }

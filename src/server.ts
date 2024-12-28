@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 
+//Configuration of the environment variables
 const result = dotenv.config();
 
 if (result.error) {
@@ -7,14 +8,18 @@ if (result.error) {
   process.exit(1);
 }
 
-console.log(process.env.PORT);
+console.log(`Port seleted in Env Variables:${process.env.PORT}`);
 
+import "reflect-metadata";
 import * as express from "express";
 import { root } from "./routes/root";
 import { isNumber } from "./utils";
 import { logger } from "./logger";
 import { AppDataSource } from "./data-source";
 
+// Create an express application
+//1 - setupExpress function
+//2 - startServer function
 const app = express();
 
 function setupExpress() {
@@ -43,7 +48,9 @@ function startServer() {
     logger.info(`Express is running on port localhost:${port}`);
   });
 }
+//
 
+// Initialize the data source and stop Nodejs process if it fails
 AppDataSource.initialize()
   .then(() => {
     logger.info("The datasource has been initialized successfully");

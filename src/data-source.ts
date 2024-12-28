@@ -1,4 +1,6 @@
 import { DataSource } from "typeorm";
+import { Lesson } from "./model/lesson";
+import { Course } from "./model/course";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -14,7 +16,9 @@ export const AppDataSource = new DataSource({
     },
   },
   entities: [
-    
+    Course, 
+    Lesson
   ],
+  synchronize: true,
   logging: true,
 });

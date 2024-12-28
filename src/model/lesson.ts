@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
@@ -9,7 +10,7 @@ import {
 import { Course } from "./course";
 
 @Entity({
-  name: "lesson",
+  name: "lessons",
 })
 export class Lesson {
   @PrimaryColumn()
@@ -25,6 +26,7 @@ export class Lesson {
   seqNo: number;
 
   @ManyToOne(() => Course, course => course.lessons)
+  @JoinColumn({ name: "courseId" })
   course: Course
 
   @CreateDateColumn()
