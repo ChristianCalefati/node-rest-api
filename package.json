@@ -10,7 +10,9 @@
     "dev": "npm-run-all clean build start-server-dev",
     "test": "npm-run-all clean build start-server",
     "populate-db": "npm-run-all clean build run-populate-db-script",
-    "run-populate-db-script": "node ./dist/model/populate-db.js"
+    "run-populate-db-script": "node ./dist/model/populate-db.js",
+    "clean-db": "npm-run-all clean build run-delete-db-script",
+    "run-delete-db-script": "node ./dist/model/delete-db.js"
   },
   "author": "",
   "license": "MIT",
