@@ -16,6 +16,7 @@ import { root } from "./routes/root";
 import { isNumber } from "./utils";
 import { logger } from "./logger";
 import { AppDataSource } from "./data-source";
+import { getAllCourses } from "./routes/get-all-courses";
 
 // Create an express application
 //1 - setupExpress function
@@ -24,6 +25,7 @@ const app = express();
 
 function setupExpress() {
   app.route("/").get(root);
+  app.route("/api/courses").get(getAllCourses);
 }
 
 function startServer() {
