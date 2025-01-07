@@ -1,15 +1,27 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { Course } from "../model/course";
+import { logger } from "../logger";
 
-export async function getAllCourses(request: Request, response: Response) {
-  console.log("GET api/courses endpoint called");
+export async function getAllCourses(
+  request: Request,
+  response: Response,
+  next: NextFunction
+) {
+  try {
+    console.log("GET api/courses endpoint called");
 
-  const courses = await AppDataSource.getRepository(Course)
-    .createQueryBuilder("courses")
-    .leftJoinAndSelect("courses.lessons", "lessons")
-    .orderBy("courses.seqNo", "ASC")
-    .getMany();
+    throw { error: "An Error occurred" };
 
-    response.status(200).json({courses});
+    const courses = await AppDataSource.getRepository(Course)
+      .createQueryBuilder("courses")
+      .leftJoinAndSelect("courses.lessons", "lessons")
+      .orderBy("courses.seqNo", "ASC")
+      .getMany(); 
+
+    response.status(200).json({ courses });
+  } catch (error) {
+    logger.error("Error occurred while fetching courses");
+    next(error);
+  }
 }
