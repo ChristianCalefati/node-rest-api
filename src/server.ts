@@ -22,9 +22,11 @@ import { defaultErrorHandler } from "./middlewares/default-error-handler";
 // Create an express application
 //1 - setupExpress function
 //2 - startServer function
+const cors = require("cors");
 const app = express();
 
 function setupExpress() {
+  app.use(cors({origin: true}));
   app.route("/").get(root);
   app.route("/api/courses").get(getAllCourses);
   app.use(defaultErrorHandler);
