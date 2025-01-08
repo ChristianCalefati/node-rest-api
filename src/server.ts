@@ -17,6 +17,7 @@ import { isNumber } from "./utils";
 import { logger } from "./logger";
 import { AppDataSource } from "./data-source";
 import { getAllCourses } from "./routes/get-all-courses";
+import { defaultErrorHandler } from "./middlewares/default-error-handler";
 
 // Create an express application
 //1 - setupExpress function
@@ -26,6 +27,7 @@ const app = express();
 function setupExpress() {
   app.route("/").get(root);
   app.route("/api/courses").get(getAllCourses);
+  app.use(defaultErrorHandler);
 }
 
 function startServer() {

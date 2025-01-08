@@ -11,13 +11,13 @@ export async function getAllCourses(
   try {
     console.log("GET api/courses endpoint called");
 
-    throw { error: "An Error occurred" };
+    //throw { error: "An Error occurred" };
 
     const courses = await AppDataSource.getRepository(Course)
       .createQueryBuilder("courses")
       .leftJoinAndSelect("courses.lessons", "lessons")
       .orderBy("courses.seqNo", "ASC")
-      .getMany(); 
+      .getMany();
 
     response.status(200).json({ courses });
   } catch (error) {
