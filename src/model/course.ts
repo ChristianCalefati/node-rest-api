@@ -25,6 +25,9 @@ export class Course {
   iconUrl: string;
 
   @Column()
+  url: string;
+
+  @Column()
   longDescription: string;
 
   @Column()
