@@ -19,6 +19,7 @@ import { AppDataSource } from "./data-source";
 import { getAllCourses } from "./routes/get-all-courses";
 import { defaultErrorHandler } from "./middlewares/default-error-handler";
 import { getCourseByUrl } from "./routes/get-course-by-url";
+import { findLessonsForCourse } from "./routes/find-lessons-for-course";
 
 // Create an express application
 //1 - setupExpress function
@@ -31,6 +32,7 @@ function setupExpress() {
   app.route("/").get(root);
   app.route("/api/courses").get(getAllCourses);
   app.route("/api/courses/:courseUrl").get(getCourseByUrl);
+  app.route("/api/courses/:courseId/lessons").get(findLessonsForCourse);
   app.use(defaultErrorHandler);
 }
 
