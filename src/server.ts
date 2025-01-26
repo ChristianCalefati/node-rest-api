@@ -22,6 +22,7 @@ import { getCourseByUrl } from "./routes/get-course-by-url";
 import { findLessonsForCourse } from "./routes/find-lessons-for-course";
 import { updateCourse } from "./routes/update-course";
 import bodyParser = require("body-parser");
+import { createCourse } from "./routes/create-course";
 
 // Create an express application
 //1 - setupExpress function
@@ -37,6 +38,7 @@ function setupExpress() {
   app.route("/api/courses/:courseUrl").get(getCourseByUrl);
   app.route("/api/courses/:courseId/lessons").get(findLessonsForCourse);
   app.route("/api/courses/:courseId").patch(updateCourse);
+  app.route("/api/couses").post(createCourse);
   app.use(defaultErrorHandler);
 }
 
