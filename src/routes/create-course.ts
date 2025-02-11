@@ -38,7 +38,7 @@ export async function createCourse(
     );
 
     response.status(201).json({ course });
-    
+
   } catch (err) {
     logger.error("Error occurred while creating course", err);
     next(err);

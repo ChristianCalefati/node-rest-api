@@ -22,6 +22,7 @@ export async function getAllCourses(
     response.status(200).json({ courses });
   } catch (error) {
     logger.error("Error occurred while fetching courses");
-    next(error);
+    const httpError = { status: 500, message: "Internal Server Error occurred", error };
+    next(httpError);
   }
 }

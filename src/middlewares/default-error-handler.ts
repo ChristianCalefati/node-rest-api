@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { logger } from "../logger";
 
 export function defaultErrorHandler(
-  err,
+  err: HttpError,
   request: Request,
   response: Response,
   next: NextFunction
@@ -16,8 +16,21 @@ export function defaultErrorHandler(
     return next(err);
   }
 
-  response.status(500).json({
-    status: "error",
-    message: "Default Error handling triggered, check logs.",
+  response.status(err.status).json({
+    status: err.status,
+    message: err.message,
   });
+}
+
+/**
+ * Interface representing an http error.
+ * 
+ * @interface ErrorTest
+ * @property {number} status - The HTTP status code of the error.
+ * @property {string} message - A descriptive message providing details about the error.
+ */
+export interface HttpError {
+  status: number;
+  message: string;
+  error?: any;
 }
