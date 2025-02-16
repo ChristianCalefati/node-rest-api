@@ -10,6 +10,7 @@ import "reflect-metadata";
 import { AppDataSource } from "../data-source";
 import { Lesson } from "./lesson";
 import { Course } from "./course";
+import { User } from "./user";
 
 async function cleanDb() {
   await AppDataSource.initialize();
@@ -17,6 +18,7 @@ async function cleanDb() {
 
   const lessonRepository = AppDataSource.getRepository(Lesson);
   const courseRepository = AppDataSource.getRepository(Course);
+  const userRepository = AppDataSource.getRepository(User);
 
   console.log("Deleting all lessons");
   await lessonRepository.delete({});
@@ -24,6 +26,9 @@ async function cleanDb() {
   console.log("Deleting all courses");
   await courseRepository.delete({});
   console.log("Courses deleted");
+  console.log("Deleting all users");
+  await userRepository.delete({});
+  console.log("Users deleted");
 }
 
 cleanDb()

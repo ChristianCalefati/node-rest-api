@@ -9,20 +9,25 @@ if (result.error) {
 
 import "reflect-metadata";
 import { AppDataSource } from "../data-source";
-import { COURSES } from "./data-db";
+import { COURSES, USERS } from "./data-db";
 import { DeepPartial } from "typeorm";
 import { Course } from "./course";
 import { Lesson } from "./lesson";
+import { User } from "./user";
+import { calculatePasswordHash } from "../utils";
 
 async function populateDb() {
   await AppDataSource.initialize();
   console.log("Database connection ready");
 
   const courses = Object.values(COURSES) as DeepPartial<Course>[];
+  const users = Object.values(USERS) as any[];
 
   const courseRepository = AppDataSource.getRepository(Course);
   const lessonRepository = AppDataSource.getRepository(Lesson);
+  const userRepository = AppDataSource.getRepository(User);
 
+  //Storing courses data
   for (let courseData of courses) {
     //Store courses data
     console.log(`Inserting course  ${courseData.title}`);
@@ -44,6 +49,23 @@ async function populateDb() {
 
     console.log(`Total courses stored: ${totalCourses}`);
     console.log(`Total lessons stored: ${totalLessons}`);
+  }
+
+  //Storing users data
+  for (let userData of users) {
+    console.log(`Inserting user ${userData.email}`);
+
+    const { email, plainTextPassword, passwordSalt, pictureUrl, isAdmin } = userData;
+
+    const userEntity = userRepository.create({
+      email,
+      pictureUrl,
+      isAdmin,
+      passwordSalt,
+      passwordHash: await calculatePasswordHash(plainTextPassword, passwordSalt),
+    })
+
+    await userRepository.save(userEntity);
   }
 }
 
