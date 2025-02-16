@@ -25,6 +25,7 @@ import bodyParser = require("body-parser");
 import { createCourse } from "./routes/create-course";
 import { deleteCourseAndLessons } from "./routes/delete-course";
 import { createUser } from "./routes/create-user";
+import { login } from "./routes/login";
 
 // Create an express application
 //1 - setupExpress function
@@ -43,6 +44,7 @@ function setupExpress() {
   app.route("/api/couses").post(createCourse);
   app.route("/api/courses/:courseId").delete(deleteCourseAndLessons);
   app.route("/api/users").post(createUser);
+  app.route("/api/login").post(login);
   app.use(defaultErrorHandler);
 }
 
