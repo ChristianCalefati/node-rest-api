@@ -41,10 +41,14 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
         const { isAdmin, pictureUrl } = userEntity;
 
-        res.status(200).json({ email, isAdmin, pictureUrl });
-
-
-
+        res.status(200).json({
+            user:
+            {
+                email,
+                isAdmin,
+                pictureUrl
+            }
+        });
     } catch (err) {
         logger.error(`User login failed`);
         const httpError = { status: 500, message: "User login failed", err };
