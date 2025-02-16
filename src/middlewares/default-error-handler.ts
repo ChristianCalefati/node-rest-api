@@ -25,7 +25,7 @@ export function defaultErrorHandler(
 /**
  * Interface representing an http error.
  * 
- * @interface ErrorTest
+ * @interface HttpError
  * @property {number} status - The HTTP status code of the error.
  * @property {string} message - A descriptive message providing details about the error.
  */
