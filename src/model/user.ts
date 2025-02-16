@@ -15,10 +15,10 @@ export class User {
     @Column()
     email: string;
 
-    @Column()
+    @Column({nullable: true})
     pictureUrl: string;
 
-    @Column()
+    @Column({default: false})
     isAdmin: boolean;
 
     @CreateDateColumn()

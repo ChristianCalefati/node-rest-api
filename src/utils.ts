@@ -9,5 +9,4 @@ export function isNumber(input: string): RegExpMatchArray | boolean {
 export async function calculatePasswordHash(password: string, passwordSalt: string) {
     const hash = await hashPasswordFunction(password, passwordSalt, 1000, 64, 'sha512');
     return hash.toString('hex');
-
 }
