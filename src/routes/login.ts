@@ -3,6 +3,7 @@ import { logger } from "../logger";
 import { AppDataSource } from "../data-source";
 import { User } from "../model/user";
 import { calculatePasswordHash } from "../utils";
+const jsonwebtoken = require("jsonwebtoken");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -43,13 +44,23 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
         const { isAdmin, pictureUrl } = userEntity;
 
+        // Create JWT token
+        const jwtPayload = {
+            userId: userEntity.id,
+            email,
+            isAdmin
+        }
+
+        const jwt = jsonwebtoken.sign(jwtPayload, JWT_SECRET);
+
+
         res.status(200).json({
-            user:
-            {
+            user: {
                 email,
                 isAdmin,
                 pictureUrl
-            }
+            },
+            token: jwt
         });
     } catch (err) {
         logger.error(`User login failed`);
