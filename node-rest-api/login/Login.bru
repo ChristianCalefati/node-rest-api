@@ -7,7 +7,7 @@ meta {
 post {
   url: {{baseUrl}}/api/login
   body: json
-  auth: none
+  auth: bearer
 }
 
 headers {
@@ -17,7 +17,10 @@ headers {
 body:json {
   {
     "email": "test@angular-university.io",
-    "password": "testt"
-    
+    "password": "test"
   }
+}
+
+script:post-response {
+  bru.setEnvVar("JWT", res.body.token);
 }

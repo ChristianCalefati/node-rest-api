@@ -26,6 +26,7 @@ import { createCourse } from "./routes/create-course";
 import { deleteCourseAndLessons } from "./routes/delete-course";
 import { createUser } from "./routes/create-user";
 import { login } from "./routes/login";
+import { checkIfAuthenticated } from "./middlewares/authentication-middleware";
 
 // Create an express application
 //1 - setupExpress function
@@ -37,13 +38,13 @@ function setupExpress() {
   app.use(cors({ origin: true }));
   app.use(bodyParser.json());
   app.route("/").get(root);
-  app.route("/api/courses").get(getAllCourses);
-  app.route("/api/courses/:courseUrl").get(getCourseByUrl);
-  app.route("/api/courses/:courseId/lessons").get(findLessonsForCourse);
-  app.route("/api/courses/:courseId").patch(updateCourse);
-  app.route("/api/couses").post(createCourse);
-  app.route("/api/courses/:courseId").delete(deleteCourseAndLessons);
-  app.route("/api/users").post(createUser);
+  app.route("/api/courses").get(checkIfAuthenticated, getAllCourses);
+  app.route("/api/courses/:courseUrl").get(checkIfAuthenticated, getCourseByUrl);
+  app.route("/api/courses/:courseId/lessons").get(checkIfAuthenticated, findLessonsForCourse);
+  app.route("/api/courses/:courseId").patch(checkIfAuthenticated, updateCourse);
+  app.route("/api/couses").post(checkIfAuthenticated, createCourse);
+  app.route("/api/courses/:courseId").delete(checkIfAuthenticated, deleteCourseAndLessons);
+  app.route("/api/users").post(checkIfAuthenticated, createUser);
   app.route("/api/login").post(login);
   app.use(defaultErrorHandler);
 }

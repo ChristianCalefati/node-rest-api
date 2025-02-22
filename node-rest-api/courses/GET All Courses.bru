@@ -1,0 +1,24 @@
+meta {
+  name: GET All Courses
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/courses
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  let jwt = bru.getEnvVar("JWT");
+  req.setHeader("Authorization", jwt);
+}
+
+tests {
+  test("Request should contain Authorization header JWT", function() { 
+     const authHeader = req.headers["Authorization"];
+     expect(authHeader).to.not.be.null;
+     expect(authHeader).to.not.be.undefined;
+  })
+}

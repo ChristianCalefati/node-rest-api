@@ -9,7 +9,7 @@ export async function getAllCourses(
   next: NextFunction
 ) {
   try {
-    console.log("GET api/courses endpoint called");
+    console.log("GET api/courses endpoint called with user profile: ", request["userProfile"]);
 
     //throw { error: "An Error occurred" };
 
