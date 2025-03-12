@@ -27,6 +27,7 @@ import { deleteCourseAndLessons } from "./routes/delete-course";
 import { createUser } from "./routes/create-user";
 import { login } from "./routes/login";
 import { checkIfAuthenticated } from "./middlewares/authentication-middleware";
+import { checkIfAdmin } from "./middlewares/authorization-middleware";
 
 // Create an express application
 //1 - setupExpress function
@@ -41,10 +42,10 @@ function setupExpress() {
   app.route("/api/courses").get(checkIfAuthenticated, getAllCourses);
   app.route("/api/courses/:courseUrl").get(checkIfAuthenticated, getCourseByUrl);
   app.route("/api/courses/:courseId/lessons").get(checkIfAuthenticated, findLessonsForCourse);
-  app.route("/api/courses/:courseId").patch(checkIfAuthenticated, updateCourse);
-  app.route("/api/couses").post(checkIfAuthenticated, createCourse);
-  app.route("/api/courses/:courseId").delete(checkIfAuthenticated, deleteCourseAndLessons);
-  app.route("/api/users").post(checkIfAuthenticated, createUser);
+  app.route("/api/courses/:courseId").patch(checkIfAuthenticated, checkIfAdmin, updateCourse);
+  app.route("/api/couses").post(checkIfAuthenticated, checkIfAdmin, createCourse);
+  app.route("/api/courses/:courseId").delete(checkIfAuthenticated, checkIfAdmin, deleteCourseAndLessons);
+  app.route("/api/users").post(checkIfAuthenticated, checkIfAdmin, createUser);
   app.route("/api/login").post(login);
   app.use(defaultErrorHandler);
 }

@@ -10,6 +10,10 @@ get {
   auth: none
 }
 
+headers {
+  Authorization: Insert JWT here
+}
+
 script:pre-request {
   let jwt = bru.getEnvVar("JWT");
   req.setHeader("Authorization", jwt);

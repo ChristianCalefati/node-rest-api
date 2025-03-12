@@ -16,9 +16,14 @@ headers {
 
 body:json {
   {
-    "email" : "c@c3.com",
-    "password": "testpsw",
-    "isAdmin" : true,
+    "email" : "c@c4.com",
+    "password": "anotherPAssword",
+    "isAdmin" : false,
     "pictureUrl" : "test.com"
   }
+}
+
+script:pre-request {
+  let jwt = bru.getEnvVar("JWT");
+  req.setHeader("Authorization", jwt);
 }
